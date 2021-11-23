@@ -49,3 +49,7 @@ window.oncontextmenu = () => {
   mStatus = 'contextmenu';
   updateStatus(mStatus);
 };
+
+document.getElementsByTagName('button')[0].onclick = () => {
+  updateStatus('reboot');
+}
