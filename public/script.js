@@ -3,6 +3,11 @@
 const socket = io();
 const pp = document.getElementsByTagName('p')[0];
 const ps = document.getElementsByTagName('p')[1];
+const img = document.getElementsByTagName('img')[0];
+
+socket.on('render', (frame) => {
+  img.src = frame;
+});
 
 let mStatus = 'unknown';
 

@@ -19,4 +19,14 @@ io.on('connection', (socket) => {
   });
 });
 
+app.post('/frame', (req, res) => {
+  if (!req.files.frame) {
+    res.status(400).send('plz set secret and frame');
+    return;
+  }
+
+  io.emit('render', `data:image/png;base64,${fs.readFileSync(req.files.frame.path, { encoding: 'base64' })}`);
+  res.send('received');
+});
+
 http.listen(PORT, console.log(`server listening. Port: ${PORT}`));
