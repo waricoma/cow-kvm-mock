@@ -1,12 +1,17 @@
 'use strict';
 
+const fs = require('fs');
 const express = require('express');
+const formData = require('express-form-data');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 5000;
 
 app.use(express.static('./public'));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(formData.parse());
 
 io.on('connection', (socket) => {
   console.log('connected', socket.id);
